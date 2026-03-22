@@ -1,0 +1,6 @@
+﻿node_modules/
+*.exe
+SlotsPlatform-win32-x64/
+SlotsPlatform-Public-win32-x64/
+dist/
+build/

@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Ganhe bônus de slots</title>
+<style>
+body { font-family: Arial; text-align: center; padding: 40px; background: #0f172a; color: white; }
+input { padding: 10px; width: 250px; margin: 10px; border-radius: 5px; border: none; }
+button { padding: 12px 20px; background: #22c55e; border: none; color: white; border-radius: 5px; cursor: pointer; }
+#links { margin-top: 30px; display: none; }
+a { display: block; margin: 10px; color: #38bdf8; }
+</style>
+</head>
+<body>
+<p>👥 Pessoas online: <span id="contador">0</span></p>
+
+<h1>🎰 Ganhe bônus de slots!</h1>
+<p>Digite seu e-mail ou WhatsApp para desbloquear os links exclusivos</p>
+
+<input type="text" id="contato" placeholder="Seu WhatsApp ou e-mail">
+<br>
+<button onclick="liberar()">Liberar Links</button>
+
+<div id='links'><a href="https://dfsfs.dsjajsaas78.org/?id=29350818" target="_blank">Plataforma 1</a>
+<a href="https://333bet44.com/?id=23692336" target="_blank">Plataforma 2</a>
+<a href="https://www.aaaaabet.bet/?id=325141909" target="_blank">Plataforma 3</a>
+<a href="https://vip.kfbbb.com/?id=26675765" target="_blank">Plataforma 4</a>
+<a href="https://ir6app.com/a/11zg82" target="_blank">Plataforma 5</a>
+<a href="https://36ss6.com/?pid=2078317741" target="_blank">Plataforma 6</a>
+<a href="https://p7.game/a/11zg17" target="_blank">Plataforma 7</a>
+<a href="https://betapp.bet.br/r/KV76PjTW" target="_blank">Plataforma 8</a>
+<a href="https://www.tgjogo888.com?code=362589" target="_blank">Plataforma 9</a>
+<a href="https://www.brabet.com/?agentid=157382497" target="_blank">Plataforma 10</a>
+<a href="https://kxk1b.com/?pid=85498170" target="_blank">Plataforma 11</a>
+<a href="https://wjcasino.bet.br/r/NYk8mXSo" target="_blank">Plataforma 12</a>
+<a href="https://qrbet77.org/?id=23716110" target="_blank">Plataforma 13</a>
+<a href="https://5amorpg.com/?id=83451554" target="_blank">Plataforma 14</a>
+<a href="https://www.i813bet.com/?agentid=65790041" target="_blank">Plataforma 15</a></div>
+
+<script>
+function liberar() {
+    let contato = document.getElementById("contato").value;
+
+    if(contato === ""){
+        alert("Digite seu contato!");
+        return;
+    }
+
+    fetch("http://192.168.3.10:3000/lead", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({contato})
+    });
+
+    fetch("http://192.168.3.10:3000/links")
+    .then(res => res.json())
+    .then(data => {
+        let html = "<h2>🔥 Links Liberados:</h2>";
+        data.forEach(l => {
+            html += <a href="\" target="_blank">\</a>;
+        });
+        document.getElementById("links").innerHTML = html;
+        document.getElementById("links").style.display = "block";
+    });
+}
+</script>
+
+<script>
+function liberar() {
+    let contato = document.getElementById("contato").value;
+
+    if(contato === ""){
+        alert("Digite seu contato!");
+        return;
+    }
+
+    fetch("http://192.168.3.10:3000/lead", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({contato})
+    });
+
+    fetch("http://192.168.3.10:3000/links")
+    .then(res => res.json())
+    .then(data => {
+        let html = "<h2>🔥 Links Liberados:</h2>";
+        data.forEach(l => {
+            html += <a href="\" target="_blank">\</a>;
+        });
+        document.getElementById("links").innerHTML = html;
+        document.getElementById("links").style.display = "block";
+    });
+}
+</script></body>
+</html>
+
+
+
+
+
