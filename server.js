@@ -32,4 +32,19 @@ app.post('/leads', (req, res) => {
     res.send('Lead salvo com sucesso!');
 });
 
+
+
+// ?? ROTA PARA VER LEADS (ADMIN)
+app.get('/leads', (req, res) => {
+    const fs = require('fs');
+
+    if (!fs.existsSync('leads.json')) {
+        return res.json([]);
+    }
+
+    const leads = JSON.parse(fs.readFileSync('leads.json'));
+    res.json(leads);
+});
+
 app.listen(PORT, () => console.log('? Servidor rodando na porta', PORT));
+
