@@ -6,38 +6,45 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1>ðŸŽ° Plataforma Slots Ativa</h1>
+    <p>Cadastro funcionando com sucesso!</p>
 
-<h1>?? Plataforma Slots Ativa</h1>
-<p>Faça seu cadastro para liberar acesso</p>
+    <form id='form' id="form">
+        <input type="text" placeholder="Nome" id="nome" required><br><br>
+        <input type="text" placeholder="WhatsApp" id="contato" required><br><br>
+        <input type="email" placeholder="Email" id="email" required><br><br>
+        <button type="submit">Cadastrar</button>
+    </form>
 
-<input type="text" placeholder="Nome" id="nome"><br><br>
-<input type="text" placeholder="WhatsApp" id="contato"><br><br>
-<input type="email" placeholder="Email" id="email"><br><br>
-
-<button onclick="cadastrar()">Cadastrar</button>
-
+    
 <script>
-async function cadastrar() {
-    const nome = document.getElementById('nome').value;
-    const contato = document.getElementById('contato').value;
-    const email = document.getElementById('email').value;
+const SERVER_URL = window.location.origin;
 
-    console.log("clicou no botão");
+document.getElementById('form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const data = {
+        nome: document.getElementById('nome').value,
+        contato: document.getElementById('contato').value,
+        email: document.getElementById('email').value
+    };
 
     try {
-        await fetch('/cadastro', {
+        const res = await fetch(\/leads, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nome, contato, email })
+            body: JSON.stringify(data)
         });
-    } catch (e) {
-        console.log("erro no fetch");
+
+        if(res.ok){
+            window.location.href = \/ofertas.html;
+        } else {
+            alert('Erro ao cadastrar');
+        }
+    } catch(err){
+        alert('Erro de conexão com o servidor');
+        console.error(err);
     }
-
-    // ?? FORÇA REDIRECIONAMENTO (independente de erro)
-    window.location.href = '/ofertas.html';
-}
-</script>
-
-</body>
+});
+</script></body>
 </html>
