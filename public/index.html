@@ -6,37 +6,38 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>?? Plataforma Slots Ativa</h1>
-    <p>Cadastro funcionando com sucesso!</p>
 
-    <form onsubmit='cadastrar(event)' id="form">
-        <input type="text" placeholder="Nome" id="nome" required><br><br>
-        <input type="text" placeholder="WhatsApp" id="contato" required><br><br>
-        <input type="email" placeholder="Email" id="email" required><br><br>
-        <button type='button' onclick='cadastrar(event)'>Cadastrar</button>
-    </form>
+<h1>?? Plataforma Slots Ativa</h1>
+<p>Faça seu cadastro para liberar acesso</p>
 
-    
+<input type="text" placeholder="Nome" id="nome"><br><br>
+<input type="text" placeholder="WhatsApp" id="contato"><br><br>
+<input type="email" placeholder="Email" id="email"><br><br>
+
+<button onclick="cadastrar()">Cadastrar</button>
+
 <script>
-async function cadastrar(event) {
-    event.preventDefault();
-
+async function cadastrar() {
     const nome = document.getElementById('nome').value;
     const contato = document.getElementById('contato').value;
     const email = document.getElementById('email').value;
 
-    const res = await fetch('/cadastro', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, contato, email })
-    });
+    console.log("clicou no botão");
 
-    if (true) {
-        window.location.href = '/ofertas.html';
-    } else {
-        alert('Erro ao cadastrar');
+    try {
+        await fetch('/cadastro', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nome, contato, email })
+        });
+    } catch (e) {
+        console.log("erro no fetch");
     }
-}
-</script></body>
-</html>
 
+    // ?? FORÇA REDIRECIONAMENTO (independente de erro)
+    window.location.href = '/ofertas.html';
+}
+</script>
+
+</body>
+</html>
