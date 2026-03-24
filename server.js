@@ -4,7 +4,7 @@ const path = require('path');
 
 app.use(express.json());
 
-// 🔥 LIBERA A PASTA PUBLIC (ESSENCIAL)
+// 🔥 SERVE TUDO DA PUBLIC
 app.use(express.static(path.join(__dirname, 'public')));
 
 // 🔥 ROTA PRINCIPAL
@@ -12,12 +12,17 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// 🔥 ROTA CADASTRO
-app.post('/leads', (req, res) => {
-    console.log('Lead recebido:', req.body);
-    res.send('Lead salvo com sucesso!');
+// 🔥 ROTA OFERTAS (FORÇADA)
+app.get('/ofertas.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'ofertas.html'));
 });
 
-// 🔥 PORTA (Render)
+// 🔥 CADASTRO
+app.post('/leads', (req, res) => {
+    console.log('Lead:', req.body);
+    res.send('OK');
+});
+
+// 🔥 PORTA RENDER
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log('Servidor rodando na porta ' + PORT));
+app.listen(PORT, () => console.log('Servidor rodando'));
