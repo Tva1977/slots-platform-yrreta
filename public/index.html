@@ -1,39 +1,54 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Slots Platform</title>
+<meta charset="UTF-8">
+<title>DEBUG YRRETA</title>
 </head>
-<body style="background:#111; color:#fff; text-align:center; font-family:Arial;">
 
-<h1>🔥 Plataforma Slots</h1>
-<p>Preencha para liberar acesso</p>
+<body style="background:#000;color:#0f0;text-align:center;font-family:Arial">
+
+<h1>🧪 MODO DEBUG</h1>
 
 <input id="nome" placeholder="Nome"><br><br>
 <input id="contato" placeholder="WhatsApp"><br><br>
 <input id="email" placeholder="Email"><br><br>
 
-<button onclick="enviar()">ENTRAR</button>
+<button onclick="enviar()">TESTAR</button>
+
+<p id="status">Status: aguardando...</p>
 
 <script>
-function enviar() {
-    const data = {
-        nome: document.getElementById('nome').value,
-        contato: document.getElementById('contato').value,
-        email: document.getElementById('email').value
-    };
+async function enviar() {
+    const status = document.getElementById('status');
 
-    fetch('/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    })
-    .then(() => {
-        window.location.href = '/ofertas.html';
-    })
-    .catch(() => {
-        alert('Erro de conexão');
-    });
+    try {
+        status.innerText = "Enviando...";
+
+        const res = await fetch('/leads', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                nome: document.getElementById('nome').value,
+                contato: document.getElementById('contato').value,
+                email: document.getElementById('email').value
+            })
+        });
+
+        status.innerText = "Resposta recebida: " + res.status;
+
+        const texto = await res.text();
+        status.innerText += " | " + texto;
+
+        if (res.ok) {
+            status.innerText += " | REDIRECIONANDO...";
+            setTimeout(() => {
+                window.location.href = '/ofertas.html';
+            }, 2000);
+        }
+
+    } catch (e) {
+        status.innerText = "ERRO: " + e.message;
+    }
 }
 </script>
 
