@@ -1,22 +1,4 @@
-﻿<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Slots Platform</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>🎰 Plataforma Slots Ativa</h1>
-    <p>Faça seu cadastro para liberar o acesso</p>
-
-    <form id="form">
-        <input type="text" placeholder="Nome" id="nome" required><br><br>
-        <input type="text" placeholder="WhatsApp" id="contato" required><br><br>
-        <input type="email" placeholder="Email" id="email" required><br><br>
-        <button type="submit">Cadastrar</button>
-    </form>
-
-    <script>
+<script>
 document.getElementById('form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -39,11 +21,7 @@ document.getElementById('form').addEventListener('submit', async (e) => {
             alert('Erro ao cadastrar');
         }
     } catch (err) {
-        alert('Erro de conexão');
+        alert('Erro de conex�o');
     }
 });
 </script>
-
-</body>
-</html>
-
