@@ -1,50 +1,23 @@
-const express = require('express');
-const cors = require('cors');
-const fs = require('fs');
+﻿const express = require('express');
+const app = express();
 const path = require('path');
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(cors());
 app.use(express.json());
 
-// Servir frontend
+// 🔥 LIBERA A PASTA PUBLIC (ESSENCIAL)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Rota de teste
+// 🔥 ROTA PRINCIPAL
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Salvar leads
+// 🔥 ROTA CADASTRO
 app.post('/leads', (req, res) => {
-    const lead = { ...req.body, data: new Date() };
-
-    let leads = [];
-    if (fs.existsSync('leads.json')) {
-        leads = JSON.parse(fs.readFileSync('leads.json'));
-    }
-
-    leads.push(lead);
-    fs.writeFileSync('leads.json', JSON.stringify(leads, null, 2));
-
+    console.log('Lead recebido:', req.body);
     res.send('Lead salvo com sucesso!');
 });
 
-
-
-// ?? ROTA PARA VER LEADS (ADMIN)
-app.get('/leads', (req, res) => {
-    const fs = require('fs');
-
-    if (!fs.existsSync('leads.json')) {
-        return res.json([]);
-    }
-
-    const leads = JSON.parse(fs.readFileSync('leads.json'));
-    res.json(leads);
-});
-
-app.listen(PORT, () => console.log('? Servidor rodando na porta', PORT));
-
+// 🔥 PORTA (Render)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log('Servidor rodando na porta ' + PORT));
